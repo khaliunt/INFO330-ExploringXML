@@ -19,13 +19,14 @@
   formatted HTML file.
   -->
 <xsl:template match="/pokedex">
-Single type pokemon: <xsl:value-of select="XPATH-QUERY-GOES-HERE" />:
+Single type pokemon: <xsl:value-of select="count(pokemon[type[2]=''])" />:
 
-<xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+<xsl:apply-templates select="pokemon[type[2]='']" />
 </xsl:template>
 
 <xsl:template match="pokemon">
-    <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> (<xsl:value-of select="XPATH-QUERY-GOES-HERE" />): <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> | <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> |
+<xsl:value-of select="name" /> (<xsl:value-of select="id" />): <xsl:apply-templates select="type"/>
+| <xsl:value-of select="species/classification" /> |
 </xsl:template>
 
 <!--
@@ -39,14 +40,14 @@ Single type pokemon: <xsl:value-of select="XPATH-QUERY-GOES-HERE" />:
   <html>
   <body>
   <h2>Single-type Pokemon</h2>
-  Count: <xsl:value-of select="XPATH-QUERY-GOES-HERE" />
+  Count: <xsl:value-of select="count(pokemon[type[2]='')" />
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name</th>
       <th>Classification</th>
       <th>Type</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="pokemon[type[2]='')" />
   </table>
   </body>
   </html>
@@ -56,10 +57,10 @@ Single type pokemon: <xsl:value-of select="XPATH-QUERY-GOES-HERE" />:
 <!-- Select the name, Pokedex number, classification and type for each of the value-ofs -->
 <!--
 <xsl:template match="pokemon">
-    <tr>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" />(<xsl:value-of select="XPATH-QUERY-GOES-HERE" />)</td>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" /></td>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" /></td>
+   <tr>
+      <td><xsl:value-of select="name" />(<xsl:value-of select="id" />)</td>
+      <td><xsl:value-of select="species/classification" /></td>
+      <td><xsl:apply-templates select="type"/></td>
     </tr>
 </xsl:template>
 -->
