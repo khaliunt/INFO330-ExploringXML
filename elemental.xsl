@@ -58,7 +58,7 @@
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name (Pokedex Number)</th>
-      <th>Type(s)</
+      <th>Type(s)</th>
   
 <!-- In this template, select the name, pokedexNumber, and type in each of the value-of
      statements, respectively. -->
