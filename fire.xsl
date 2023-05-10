@@ -7,9 +7,11 @@
         OR type2 = 'fire' = 64 Pokemon -->
 
 <!-- This generates a comma-separated list for the Pokemon types; 'grass, poison' or 'normal' -->
-<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<xsl:template match="type[position() != last()]">
+<xsl:value-of select="text()"/>,
+</xsl:template>
 <xsl:template match="type[position() = last()]">
-  <xsl:value-of select="text()"/>
+<xsl:value-of select="text()"/>
 </xsl:template>
 
 <!--
@@ -20,12 +22,12 @@
   -->
 <!-- -->
 <xsl:template match="/pokedex">
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+<xsl:apply-templates select="pokemon[type/type1='fire' or type/type2='fire']" />
 </xsl:template>
 
 <!-- Print the name (classification): types -->
 <xsl:template match="pokemon">
-    <xsl:value-of select="XPATH-QUERY-GOES-HERE" /> (<xsl:value-of select="XPATH-QUERY-GOES-HERE" />): <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" /><xsl:text>
+<xsl:value-of select="name"/> (<xsl:value-of select="classification" />): <xsl:apply-templates select="type" />xsl:text
 </xsl:text>
 </xsl:template>
 
@@ -43,7 +45,7 @@
       <th>Name (Classification)</th>
       <th>Types</th>
     </tr>
-    <xsl:apply-templates select="XPATH-QUERY-GOES-HERE" />
+    <xsl:apply-templates select="pokemon[type/type1='fire' or type/type2='fire']" />
   </table>
   </body>
   </html>
@@ -51,8 +53,8 @@
 
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select="XPATH-QUERY-GOES-HERE" />(<xsl:value-of select="XPATH-QUERY-GOES-HERE" />)</td>
-      <td><xsl:apply-templates select="XPATH-QUERY-GOES-HERE" /></td>
+      <td><xsl:value-of select="name"/> (<xsl:value-of select="classification" />)</td>
+      <td><xsl:apply-templates select="type" /></td>
     </tr>
 </xsl:template>
 -->
