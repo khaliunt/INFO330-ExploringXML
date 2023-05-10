@@ -11,7 +11,9 @@
   either "grass, poison" if they have two types, or "fighting" if they have
   only one type. 
   -->
-<xsl:template match="type[position() != last()]"><xsl:value-of select="text()"/>, </xsl:template>
+<xsl:template match="type[position() != last()]">
+  <xsl:value-of select="text()"/>, 
+</xsl:template>
 <xsl:template match="type[position() = last()]">
   <xsl:value-of select="text()"/>
 </xsl:template>
@@ -47,7 +49,7 @@
   -->
 <!-- In this template, select all the pokemon that are fire, water, flying or ground -->
 <xsl:template match="/pokedex">
-  <xsl:variable name="pokemonResults" select="XPATH-QUERY-GOES-HERE" />
+  <xsl:variable name="pokemonResults" select="pokemon[type1='fire' or type1='water' or type1='flying' or type1='ground' or type2='fire' or type2='water' or type2='flying' or type2='ground']" />
 
   <html>
   <body>
@@ -56,20 +58,14 @@
   <table border="1">
     <tr bgcolor="#9acd32">
       <th>Name (Pokedex Number)</th>
-      <th>Type(s)</th>
-    </tr>
-    <xsl:apply-templates select="pokemon[$pokemonResults]" />
-  </table>
-  </body>
-  </html>
-</xsl:template>
-
+      <th>Type(s)</
+  
 <!-- In this template, select the name, pokedexNumber, and type in each of the value-of
      statements, respectively. -->
 <xsl:template match="pokemon">
     <tr>
-      <td><xsl:value-of select=".XPATH-QUERY-GOES-HERE" />(<xsl:value-of select="XPATH-QUERY-GOES-HERE" />)</td>
-      <td><xsl:apply-templates select="XPATH-QUERY-GOES-HERE" /></td>
+      <td><xsl:value-of select="name/text()" />(<xsl:value-of select="pokedexNumber/text()" />)</td>
+      <td><xsl:apply-templates select="type" /></td>
     </tr>
 </xsl:template>
 
